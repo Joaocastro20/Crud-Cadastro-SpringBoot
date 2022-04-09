@@ -2,12 +2,17 @@ package aula.com.projeto;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @RequestMapping("/inicio")
+    public ModelAndView index(){return new ModelAndView("index.html") ;
+    }
 
     @Autowired
     private UserRepository userRepository;
@@ -32,5 +37,7 @@ public class UserController {
     public User update(@RequestBody User user){
         return userRepository.save(user);
     }
+
+
 
 }
