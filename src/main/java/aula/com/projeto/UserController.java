@@ -10,29 +10,25 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
 
-    @RequestMapping("/inicio")
-    public ModelAndView index(){return new ModelAndView("index.html") ;
-    }
-
     @Autowired
     private UserRepository userRepository;
 
-
+    //Pegar dados no banco
     @RequestMapping(value = "",method = RequestMethod.GET)
     public List<User> findAll(){
         return userRepository.findAll();
     }
-
+    //deletar dados do banco
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
     public void findAll(@PathVariable Long id){
         userRepository.deleteById(id);
     }
-
+    //salvar dados no banco
     @RequestMapping(value = "", method = RequestMethod.POST)
     public User save(@RequestBody User user){
         return userRepository.save(user);
     }
-
+    //alterar dados no banco
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public User update(@RequestBody User user){
         return userRepository.save(user);
