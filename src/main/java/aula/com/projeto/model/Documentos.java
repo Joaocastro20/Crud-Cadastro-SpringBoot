@@ -1,4 +1,4 @@
-package aula.com.projeto;
+package aula.com.projeto.model;
 
 public class Documentos {
     private String nome;

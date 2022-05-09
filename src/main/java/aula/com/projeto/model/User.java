@@ -1,4 +1,4 @@
-package aula.com.projeto;
+package aula.com.projeto.model;
 
 import javax.persistence.*;
 

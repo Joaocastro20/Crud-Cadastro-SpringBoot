@@ -1,7 +1,8 @@
-package aula.com.projeto;
+package aula.com.projeto.model;
 
 import aula.com.projeto.exception.DocumentoInexistente;
 import aula.com.projeto.exception.DocumentoSemNome;
+import aula.com.projeto.model.Documentos;
 
 import java.util.ArrayList;
 import java.util.List;

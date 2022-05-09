@@ -2,6 +2,8 @@ package aula.com.projeto;
 
 import aula.com.projeto.exception.DocumentoInexistente;
 import aula.com.projeto.exception.DocumentoSemNome;
+import aula.com.projeto.model.CadastroDocumentos;
+import aula.com.projeto.model.Documentos;
 import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;

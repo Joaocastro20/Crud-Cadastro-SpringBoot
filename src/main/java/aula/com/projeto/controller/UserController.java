@@ -1,7 +1,7 @@
 package aula.com.projeto.controller;
 
-import aula.com.projeto.User;
-import aula.com.projeto.UserRepository;
+import aula.com.projeto.model.User;
+import aula.com.projeto.repository.UserRepository;
 import aula.com.projeto.exception.NameNullException;
 import aula.com.projeto.exception.NameVazioException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +15,8 @@ public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+
 
     //Pegar dados no banco
     @RequestMapping(value = "",method = RequestMethod.GET)
