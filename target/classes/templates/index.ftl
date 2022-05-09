@@ -8,7 +8,8 @@
 
 </h1>
 <h2>
-    <p>data e hora: ${datahora} </p>
+    <p>Nome: ${usuario}</p>
+    <p>Email: ${email}</p>
 </h2>
 </body>
 </html>
