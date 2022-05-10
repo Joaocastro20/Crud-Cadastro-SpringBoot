@@ -2,7 +2,6 @@ package aula.com.projeto.service;
 
 import io.micrometer.core.instrument.util.StringUtils;
 import org.springframework.core.io.ResourceLoader;
-import org.xhtmlrenderer.extend.UserAgentCallback;
 import org.xhtmlrenderer.layout.SharedContext;
 import org.xhtmlrenderer.pdf.ITextOutputDevice;
 import org.xhtmlrenderer.pdf.ITextUserAgent;

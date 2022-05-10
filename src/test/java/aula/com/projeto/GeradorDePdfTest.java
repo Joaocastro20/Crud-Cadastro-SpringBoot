@@ -13,7 +13,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -22,8 +21,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GeradorDePdfTest {
 
     private String nome = "Joao Pedro De Abreu Castro";
-    private String numeroCarteira = "656499659590";
-    private String cpf = "2651948254828";
+    private String numeroCarteira = "2658493";
+    private String cpf = "062.215.987-58";
     private String data = DateFormat.getDateInstance(DateFormat.LONG).format(new Date());
 
     @Autowired
