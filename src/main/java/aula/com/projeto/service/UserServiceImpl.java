@@ -19,4 +19,9 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).get();
     }
 
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
 }
