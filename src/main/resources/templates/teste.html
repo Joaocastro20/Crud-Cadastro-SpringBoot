@@ -5,8 +5,14 @@
   <title>Title</title>
 </head>
 <body>
-  <p>${usuario}</p>
-  <p>${email}</p>
+  <#list user as users>
+  <tr>
+    <td>ID: ${users.id}</td><br>
+    <td>NOME: ${users.name}</td><br>
+    <td>EMAIL: ${users.email}</td><br>
+  </tr>
+  </#list>
+
 
 </body>
 </html>
