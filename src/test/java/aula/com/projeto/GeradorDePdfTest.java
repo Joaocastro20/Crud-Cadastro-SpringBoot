@@ -41,7 +41,7 @@ public class GeradorDePdfTest {
             "qualquer programa/produto “pirata”.\n" +
             "</p>\n" +
             "<p>\n" +
-            "O(a) colaborador(a): ${nome} - Estagiário, Empresa Basis, lotado no Venâncio\n" +
+            "O(a) colaborador(a): "+nome+"- Estagiário, Empresa Basis, lotado no Venâncio\n" +
             "Shopping, portador do RG sob o nº "+ numeroCarteira+" e CPF nº\n" + cpf+
             " se compromete a seguir a orientação da empresa,\n" +
             "sob pena de responder pessoalmente, inclusive penalmente, pelo\n" +
