@@ -12,15 +12,21 @@ public class User {
     @Column(name = "NM_NAME")
     private String name;
     private String email;
+    private String cpf;
 
     public User() {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.cpf = cpf;
     }
 
     public User(String teste, String s) {
     }
+
+    public String getCpf() {return cpf;}
+
+    public void setCpf(String cpf){this.cpf = cpf;}
 
     public String getName() {
         return name;

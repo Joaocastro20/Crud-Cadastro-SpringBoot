@@ -1,8 +1,11 @@
 package aula.com.projeto;
 
 import aula.com.projeto.exception.GeracaoDocumentoException;
+import aula.com.projeto.model.TemplateDocumento;
+import aula.com.projeto.model.User;
 import aula.com.projeto.service.GeradorPdfService;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.junit.jupiter.api.Test;
@@ -27,6 +30,17 @@ public class GeradorDePdfTest {
 
     @Autowired
     private GeradorPdfService geradorPdfService;
+
+    @Test
+    public void deveGerarTemplate() throws GeracaoDocumentoException, IOException {
+        TemplateDocumento templateDocumento = new TemplateDocumento();
+        templateDocumento.setNome("termo");
+        templateDocumento.setModelo("Eu, indentificado com cpf ${user.cpf}");
+        User user = new User();
+        user.setCpf("111-222-333-45");
+        Reader reader = geradorPdfService.prossesaTemplate(user, templateDocumento );
+        assertThat(IOUtils.toString(reader).contains(cpf));
+    }
 
 
     @Test
