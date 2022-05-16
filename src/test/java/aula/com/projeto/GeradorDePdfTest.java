@@ -4,6 +4,8 @@ import aula.com.projeto.exception.GeracaoDocumentoException;
 import aula.com.projeto.model.TemplateDocumento;
 import aula.com.projeto.model.User;
 import aula.com.projeto.service.GeradorPdfService;
+import aula.com.projeto.service.TemplateDocumentoService;
+import aula.com.projeto.service.UserService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -31,14 +33,20 @@ public class GeradorDePdfTest {
     @Autowired
     private GeradorPdfService geradorPdfService;
 
+    @Autowired
+    private TemplateDocumentoService templateDocumentoService;
+
+    @Autowired
+    private UserService userService;
+
+
+
     @Test
-    public void deveGerarTemplate() throws GeracaoDocumentoException, IOException {
-        TemplateDocumento templateDocumento = new TemplateDocumento();
-        templateDocumento.setNome("termo");
-        templateDocumento.setModelo("Eu, indentificado com cpf ${user.cpf}");
-        User user = new User();
-        user.setCpf("111-222-333-45");
+    public void deveGerarTemplateII() throws GeracaoDocumentoException, IOException {
+        TemplateDocumento templateDocumento = templateDocumentoService.findById(1);
+        User user = userService.findById(1);
         Reader reader = geradorPdfService.prossesaTemplate(user, templateDocumento );
+        System.out.println(IOUtils.toString(reader));
         assertThat(IOUtils.toString(reader).contains(cpf));
     }
 
@@ -71,6 +79,7 @@ public class GeradorDePdfTest {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         geradorPdfService.gerarPDF(template, stream);
         final byte[] pdfData = stream.toByteArray();
+        System.out.println(pdfData);
         Path temp = Files.createTempFile("hello", ".pdf");
         System.out.println(temp);
         FileUtils.writeByteArrayToFile(temp.toFile(), pdfData);

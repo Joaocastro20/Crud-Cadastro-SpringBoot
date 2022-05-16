@@ -1,8 +1,13 @@
 package aula.com.projeto.controller;
 
 
+import aula.com.projeto.exception.GeracaoDocumentoException;
+import aula.com.projeto.model.TemplateDocumento;
 import aula.com.projeto.model.User;
+import aula.com.projeto.service.GeradorPdfService;
+import aula.com.projeto.service.TemplateDocumentoService;
 import aula.com.projeto.service.UserService;
+import freemarker.template.Configuration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,11 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.constraints.PositiveOrZero;
+import java.io.ByteArrayOutputStream;
+import java.io.Reader;
 import java.text.DateFormat;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -24,14 +28,23 @@ public class IndexController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    GeradorPdfService geradorPdfService;
+
+    @Autowired
+    TemplateDocumentoService templateDocumentoService;
+
+    private final Configuration configuration;
+
+    public IndexController(Configuration configuration) {
+        this.configuration = configuration;
+    }
 
     @GetMapping("test/{id}")
     public ModelAndView get(@PathVariable("id") long id) {
-        ModelAndView mv = new ModelAndView("index");
+        ModelAndView mv = new ModelAndView("listarid");
         String user = userService.findById(id).getName();
-        String useremail = userService.findById(id).getEmail();
-        mv.addObject("usuario", user)
-            .addObject("email", useremail);
+        mv.addObject("usuario", user);
         return mv;
 
     }
@@ -50,5 +63,12 @@ public class IndexController {
         mv.addObject("nome", nome)
             .addObject("data", data);
         return mv;
+    }
+    @GetMapping("/createpdf/{id}/{idt}")
+    public String pdfCreate(@PathVariable("id")long id,@PathVariable("idt") long idt) throws GeracaoDocumentoException {
+        User user = userService.findById(id);
+        TemplateDocumento templateDocumento = templateDocumentoService.findById(idt);
+        Reader templatepro = geradorPdfService.prossesaTemplate(user, templateDocumento);
+        return "gerarpdf";
     }
 }
