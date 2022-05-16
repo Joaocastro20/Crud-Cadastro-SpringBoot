@@ -8,6 +8,8 @@ import aula.com.projeto.service.GeradorPdfService;
 import aula.com.projeto.service.TemplateDocumentoService;
 import aula.com.projeto.service.UserService;
 import freemarker.template.Configuration;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.Reader;
+import java.io.StringReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -65,10 +71,20 @@ public class IndexController {
         return mv;
     }
     @GetMapping("/createpdf/{id}/{idt}")
-    public String pdfCreate(@PathVariable("id")long id,@PathVariable("idt") long idt) throws GeracaoDocumentoException {
+    public String pdfCreate(@PathVariable("id")long id,@PathVariable("idt") long idt) throws GeracaoDocumentoException, IOException {
         User user = userService.findById(id);
         TemplateDocumento templateDocumento = templateDocumentoService.findById(idt);
-        Reader templatepro = geradorPdfService.prossesaTemplate(user, templateDocumento);
+        final String templatepro = IOUtils.toString(geradorPdfService.prossesaTemplate(user, templateDocumento));
+        Reader template = new StringReader(templatepro);
+        System.out.println(templatepro);
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        geradorPdfService.gerarPDF(template, stream);
+        final byte[] pdfData = stream.toByteArray();
+        System.out.println(Arrays.toString(pdfData));
+        Path temp = Files.createTempFile("hello", ".pdf");
+        System.out.println(temp);
+        FileUtils.writeByteArrayToFile(temp.toFile(), pdfData);
+        stream.close();
         return "gerarpdf";
     }
 }
