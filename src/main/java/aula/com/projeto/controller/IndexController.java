@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -54,9 +55,9 @@ public class IndexController {
         return mv;
 
     }
-    @GetMapping("/test/test")
+    @GetMapping("/createpdf")
     public ModelAndView get(){
-        ModelAndView mv = new ModelAndView("teste");
+        ModelAndView mv = new ModelAndView("gerarpdf");
         List<User> user = userService.findAll().stream().collect(Collectors.toList());
         mv.addObject("user", user);
         return mv;
@@ -85,6 +86,6 @@ public class IndexController {
         System.out.println(temp);
         FileUtils.writeByteArrayToFile(temp.toFile(), pdfData);
         stream.close();
-        return "gerarpdf";
+        return "templateteste";
     }
 }

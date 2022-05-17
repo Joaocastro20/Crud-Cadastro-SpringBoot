@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:th="http://www.w3.org/1999/xhtml">
+<html>
 <head>
   <meta charset="UTF-8">
   <title>Creating Pdf File</title>
 </head>
 <body>
-<a th:href="@{/createPdf}" class="btn btn-primary btn-sm mb-3"> GET PDF </a>
+<h1>Lista de usuarios:</h1>
+<table>
+  <#list user as users>
+  <tr>
+    <td>ID: ${users.id}</td>
+    <td>NOME: ${users.name}</td>
+    <td>EMAIL: ${users.email}</td>
+  </tr>
+</#list>
+</table>
 
+<form method="get">
+
+<input type="number" name="id" placeholder="usuario"><br>
+<input type="number" name="idt" placeholder="template">
+
+  <button type="submit" href="" > GET PDF </button>
+</form>
 </body>
 </html>
