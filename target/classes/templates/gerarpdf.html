@@ -5,7 +5,7 @@
   <title>Creating Pdf File</title>
 </head>
 <body>
-<h1>Lista de usuarios:</h1>
+<h1>Gerador de PDF:</h1>
 <table>
   <#list user as users>
   <tr>
@@ -16,12 +16,12 @@
 </#list>
 </table>
 
-<form method="get">
+<form method="post">
 
 <input type="number" name="id" placeholder="usuario"><br>
 <input type="number" name="idt" placeholder="template">
 
-  <button type="submit" href="" > GET PDF </button>
+  <button type="submit" href="/createpdf" > GERAR O PDF</button>
 </form>
 </body>
 </html>

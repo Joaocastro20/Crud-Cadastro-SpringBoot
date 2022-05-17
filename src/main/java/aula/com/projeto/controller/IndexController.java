@@ -12,10 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.ByteArrayOutputStream;
@@ -71,8 +68,8 @@ public class IndexController {
             .addObject("data", data);
         return mv;
     }
-    @GetMapping("/createpdf/{id}/{idt}")
-    public String pdfCreate(@PathVariable("id")long id,@PathVariable("idt") long idt) throws GeracaoDocumentoException, IOException {
+    @PostMapping("/createpdf")
+    public String pdfCreate(@RequestParam("id")long id, @RequestParam("idt") long idt) throws GeracaoDocumentoException, IOException {
         User user = userService.findById(id);
         TemplateDocumento templateDocumento = templateDocumentoService.findById(idt);
         final String templatepro = IOUtils.toString(geradorPdfService.prossesaTemplate(user, templateDocumento));
