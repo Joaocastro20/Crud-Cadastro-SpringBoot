@@ -1,9 +1,6 @@
 package aula.com.projeto.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -15,6 +12,7 @@ public class TemplateDocumento implements Serializable {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String nome;
+    @Lob
     private String modelo;
     private boolean ativo;
 
