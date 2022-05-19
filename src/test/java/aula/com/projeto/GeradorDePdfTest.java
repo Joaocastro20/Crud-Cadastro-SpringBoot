@@ -10,6 +10,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,6 +22,7 @@ import java.text.DateFormat;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertArrayEquals;
 
 @SpringBootTest
 public class GeradorDePdfTest {
@@ -91,5 +93,35 @@ public class GeradorDePdfTest {
         try (PDDocument pdfDocument = PDDocument.load(new ByteArrayInputStream(pdfData))) {
             return new PDFTextStripper().getText(pdfDocument);
         }
+    }
+
+    @Test
+    public void byteParaBase(){
+        Base64 code = new Base64();
+        byte[] matriz = { -56, -123, -109, -109, -106, 64, -26,
+            -106, -103, -109, -124, 90 };
+        byte[] base = code.encode(matriz);
+        System.out.println(String.valueOf(base));
+    }
+    @Test
+    public void whenGetBytesWithNamedCharset_thenOK()
+        throws UnsupportedEncodingException {
+        String inputString = "Hello World!";
+        String charsetName = "IBM01140";
+
+        byte[] byteArrray = inputString.getBytes("IBM01140");
+
+        assertArrayEquals(
+            new byte[] { -56, -123, -109, -109, -106, 64, -26,
+                -106, -103, -109, -124, 90 },
+            byteArrray);
+    }
+    @Test
+    public void byteParaString() {
+        Base64 code = new Base64();
+        byte[] matriz = {-56, -123, -109, -109, -106, 64, -26,
+            -106, -103, -109, -124, 90};
+        String palavra = String.valueOf(code.decode(matriz));
+        assertThat(palavra.contains("Hello World!"));
     }
 }

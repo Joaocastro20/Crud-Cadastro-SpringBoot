@@ -7,7 +7,6 @@ import com.itextpdf.text.DocumentException;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-import javassist.bytecode.StackMap;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.xhtmlrenderer.layout.SharedContext;
