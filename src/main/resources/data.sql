@@ -1,4 +1,4 @@
-INSERT INTO USER (id,cpf,nm_name,email) VALUES (1,'111.111.111-11','Robertinho','robertinho@Gmail.com');
+INSERT INTO USER (id,cpf,nm_name,email) VALUES (1,'111.111.111-11','Kelly Cristina Feitosa Dos Santos Ferreira Pereira','robertinho@Gmail.com');
 INSERT INTO USER (id,cpf,nm_name,email) VALUES (2,'222.222.222-22','Eustaquio','eustaquio@Gmail.com');
 INSERT INTO USER (id,cpf,nm_name,email) VALUES (3,'333.333.333-33','Ana','ana@Gmail.com');
 INSERT INTO USER (id,cpf,nm_name,email) VALUES (4,'444.444.444-44','Ronaldo','ronaldo@Gmail.com');
@@ -180,20 +180,64 @@ INSERT INTO TEMPLATE_DOCUMENTO (id,ativo,modelo,nome) VALUES  (2,true,'<html><he
   pelas partes em 2 (duas) vias de igual teor e um só efeito.</p>
 <p>Brasília-DF, 15 de Dezembro de 2021.</p>
 <div style="align-items: center">
-<table style="text-align: center;padding: 40px">
+<table style="text-align: center">
   <tr>
-    <td style="width: 400px;padding-left:20px"><hr style="width:100%"></hr></td>
-    <td style="width: 400px;padding-left:20px"><hr style="width:100%"></hr></td>
+    <td style="width: 600px;padding-right: 20px"><hr></hr></td>
+    <td style="width: 600px"><hr></hr></td>
   </tr>
   <tr>
-    <td>Basis Tecnologia</td>
-    <td>${user.name}</td>
+    <td>Basis Tecnologia da Informação S.A.<br></br>CNPJ: 11.777.162/0001-57</td>
+    <td>${user.name}<br></br>CPF: 172.431.354.65</td>
   </tr>
 </table>
 </div>
 </body></html>
 
+
+
+
 ','modeloassinatura');
-INSERT INTO TEMPLATE_DOCUMENTO (id,ativo,modelo,nome) VALUES  (3,true,'<html><head><link href="classpath:/template.css" rel="stylesheet"/></head><body><img src="classpath:/basis.png" /> <p class="classpath:/template.css"> Eu ${user.name}, identificado pelo CPF: ${user.cpf}</p></body></html>','termo');
+INSERT INTO TEMPLATE_DOCUMENTO (id,ativo,modelo,nome) VALUES  (3,true,'<html><head><link href="classpath:/template.css" rel="stylesheet"/></head><body><img src="classpath:/basis.png" /> <p class="classpath:/template.css">
+<p><b>NORMA INTERNA No. 01/18</b></p>
+<p>ASSUNTO: CUMPRIMENTO DA JORNADA DE TRABALHO</p>
+<p>Fica estabelecido que:</p></p>
+<ol>
+  <li>O empregado somente poderá trabalhar em horário extraordinário em caráter eventual e
+    por absoluta necessidade, seja para fazer face a motivo de força maior ou para atender à
+    realização/conclusão de serviços inadiáveis ou cuja inexecução possa acarretar prejuízo
+    manifesto a empresa.</li>
+  <li>. A execução de horas extras depende de aprovação prévia e autorização de pagamento
+    posterior, com confirmação da execução dos trabalhos, do gestor da área onde se
+    encontra locado a empregado</li>
+  <li>O requerimento de realização de hora extra antes do início/fim da jornada normal deverá
+    conter justificativa da necessidade de realização das tarefas objetos da excepcionalidade,
+    bem como o prazo estimado da duração do trabalho em regime de sobre jornada, sendo
+    assinado pelo empregado, no início/fim das atividades pelo gestor. </li>
+  <li>A marcação do ponto deverá ocorrer sempre dentro dos horários estabelecidos para a
+    jornada de trabalho. Sendo que, o registro de jornada extra somente com prévia
+    autorização do superior imediato.</li>
+  <li>O descumprimento das normas previstas nos itens 1 – 2 – 3 – 4 acarretará aplicação de
+    medidas disciplinares previstas na legislação trabalhista. </li>
+  <li>As horas extraordinárias acumuladas serão contabilizadas em banco de horas para
+    posterior compensação e/ou pagamento, nos termos da CCT vigente.</li>
+  <li>. As horas negativas, relativas a faltas injustificadas e/ou atrasos, apuradas mensalmente,
+    serão lançadas e descontadas em folha de pagamento.</li>
+  <li>${user.name}, declaro estar ciente do conteúdo da
+    presente norma, comprometendo-me com seu fiel cumprimento nos termos da lei.</li>
+</ol>
+<div style="align-items: center">
+  <table style="text-align: center">
+    <tr>
+      <td style="width: 600px;padding-right: 20px"><hr></hr></td>
+      <td style="width: 600px"><hr></hr></td>
+    </tr>
+    <tr>
+      <td>Antonio Miguel Negrelli<br></br>Diretor</td>
+      <td>${user.name}<br></br>CPF: 172.431.354.65</td>
+    </tr>
+  </table>
+</div>
+</body></html>
+','termo');
 
 
