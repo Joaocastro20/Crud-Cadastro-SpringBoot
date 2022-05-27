@@ -197,11 +197,11 @@ INSERT INTO TEMPLATE_DOCUMENTO (id,ativo,modelo,nome) VALUES  (2,true,'<html><he
 
 
 ','modeloassinatura');
-INSERT INTO TEMPLATE_DOCUMENTO (id,ativo,modelo,nome) VALUES  (3,true,'<html><head><link href="classpath:/template.css" rel="stylesheet"/></head><body><img src="classpath:/basis.png" /> <p class="classpath:/template.css">
+INSERT INTO TEMPLATE_DOCUMENTO (id,ativo,modelo,nome) VALUES  (3,true,'<html><head><link href="classpath:/template.css" rel="stylesheet"/></head><body style="font-size: 15px"><img src="classpath:/basis.png" /> <p class="classpath:/template.css"> <h1>TERMO DE COMPROMISSO DE MANUTENÇÃO DE SIGILO<br></br><hr></hr></h1>
 <p><b>NORMA INTERNA No. 01/18</b></p>
 <p>ASSUNTO: CUMPRIMENTO DA JORNADA DE TRABALHO</p>
 <p>Fica estabelecido que:</p></p>
-<ol>
+<ol >
   <li>O empregado somente poderá trabalhar em horário extraordinário em caráter eventual e
     por absoluta necessidade, seja para fazer face a motivo de força maior ou para atender à
     realização/conclusão de serviços inadiáveis ou cuja inexecução possa acarretar prejuízo
@@ -228,12 +228,12 @@ INSERT INTO TEMPLATE_DOCUMENTO (id,ativo,modelo,nome) VALUES  (3,true,'<html><he
 <div style="align-items: center">
   <table style="text-align: center">
     <tr>
-      <td style="width: 600px;padding-right: 20px"><hr></hr></td>
-      <td style="width: 600px"><hr></hr></td>
+      <td style="width: 600px;padding-right: 20px">_______________________________</td>
+      <td> Ciente:___/___/___</td>
     </tr>
     <tr>
       <td>Antonio Miguel Negrelli<br></br>Diretor</td>
-      <td>${user.name}<br></br>CPF: 172.431.354.65</td>
+      <td>Assinatura:__________________</td>
     </tr>
   </table>
 </div>

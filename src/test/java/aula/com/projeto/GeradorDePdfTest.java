@@ -6,22 +6,34 @@ import aula.com.projeto.model.User;
 import aula.com.projeto.service.GeradorPdfService;
 import aula.com.projeto.service.TemplateDocumentoService;
 import aula.com.projeto.service.UserService;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.itextpdf.text.pdf.qrcode.WriterException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.tomcat.util.codec.binary.Base64;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.within;
 import static org.junit.Assert.assertArrayEquals;
 
 @SpringBootTest
@@ -123,5 +135,51 @@ public class GeradorDePdfTest {
             -106, -103, -109, -124, 90};
         String palavra = String.valueOf(code.decode(matriz));
         assertThat(palavra.contains("Hello World!"));
+    }
+
+    @Test
+    @DisplayName("Gera QrCode com uma determinada url")
+    public final void generateQRCodeImage()
+        throws WriterException, IOException, com.google.zxing.WriterException {
+
+        // String text = String.valueOf(Files.createTempFile("java.io.text","ASD"));
+        String text = "asmdmasdadaw";
+        //Perguntar se e pra ser aleatorio mesmo, pois aqui sera o conteudo do QRcode
+        String filePath = String.valueOf(Files.createTempFile("BASIS",".png"));
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE,200,200);
+        System.out.println("-----------------BIT MATRIX-------------");
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+        Path path = FileSystems.getDefault().getPath(filePath);
+        System.out.println(path);
+        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+    }
+
+    @Test
+    public void imageParaByteArray() throws IOException {
+    File image = new File("/tmp/BASIS10422564510369614420.png");
+    BufferedImage original = ImageIO.read(image);
+    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+    ImageIO.write(original,"png",stream);
+    byte [] imagembyte = stream.toByteArray();
+    System.out.println(Arrays.toString(imagembyte));
+    }
+
+    @Test
+    public void imagemDirect() throws IOException, com.google.zxing.WriterException {
+        // String text = String.valueOf(Files.createTempFile("java.io.text","ASD"));
+        String text = "asmdmasdadaw";
+        //Perguntar se e pra ser aleatorio mesmo, pois aqui sera o conteudo do QRcode
+        String filePath = String.valueOf(Files.createTempFile("BASIS",".png"));
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE,200,200);
+        System.out.println("-----------------BIT MATRIX-------------");
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
+        Path path = FileSystems.getDefault().getPath(filePath);
+        System.out.println(path);
+        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+
     }
 }
