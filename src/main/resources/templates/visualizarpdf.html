@@ -1,10 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>$Title$</title>
+  <title>Visualizar</title>
 </head>
 <body>
-$END$
+<h1>Visualizar Pdf</h1>
+<table>
+  <#list user as users>
+  <tr>
+    <td>ID: ${users.id}</td>
+    <td>NOME: ${users.name}</td>
+    <td>EMAIL: ${users.email}</td>
+  </tr>
+</#list>
+</table>
+
+<form method="post">
+
+  <input type="number" name="id" placeholder="usuario"><br>
+  <input type="number" name="idt" placeholder="template">
+
+  <button type="submit"> VISUALIZAR</button>
+</form>
 </body>
 </html>
