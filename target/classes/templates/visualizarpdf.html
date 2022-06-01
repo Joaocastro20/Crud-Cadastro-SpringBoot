@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Visualizar</title>
+</head>
+<body>
+<h1>Visualizar Pdf</h1>
+<table>
+  <#list user as users>
+  <tr>
+    <td>ID: ${users.id}</td>
+    <td>NOME: ${users.name}</td>
+    <td>EMAIL: ${users.email}</td>
+  </tr>
+</#list>
+</table>
+
+<form method="post">
+
+  <input type="number" name="id" placeholder="usuario"><br>
+  <input type="number" name="idt" placeholder="template">
+
+  <button type="submit"> VISUALIZAR</button>
+</form>
+</body>
+</html>

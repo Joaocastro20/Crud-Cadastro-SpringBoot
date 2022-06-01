@@ -236,8 +236,10 @@ INSERT INTO TEMPLATE_DOCUMENTO (id,ativo,modelo,nome) VALUES  (3,true,'<html><he
       <td>Assinatura:__________________</td>
     </tr>
   </table>
+  <div class="profile_picture" style="display:block;width:140px;height:140px;" />
 </div>
 </body></html>
+
 ','termo');
 
 
