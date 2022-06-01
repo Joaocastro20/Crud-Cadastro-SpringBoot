@@ -10,15 +10,19 @@ import aula.com.projeto.service.UserService;
 import freemarker.template.Configuration;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.DateFormat;
@@ -28,6 +32,8 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/")
 public class IndexController {
+
+    private final Logger log = LoggerFactory.getLogger(IndexController.class);
 
     @Autowired
     UserService userService;
@@ -59,6 +65,14 @@ public class IndexController {
         mv.addObject("user", user);
         return mv;
     }
+    @GetMapping("/visualizar")
+    public ModelAndView viewPdf(){
+        ModelAndView mv = new ModelAndView("visualizarpdf");
+        List<User> user = userService.findAll().stream().collect(Collectors.toList());
+        mv.addObject("user", user);
+        return mv;
+    }
+
     @GetMapping("/template")
     public ModelAndView getTemplate(){
         ModelAndView mv = new ModelAndView("templateteste");
@@ -84,5 +98,10 @@ public class IndexController {
         FileUtils.writeByteArrayToFile(temp.toFile(), pdfData);
         stream.close();
         return "templateteste";
+    }
+    @PostMapping(value = "/visualizar",produces = MediaType.APPLICATION_PDF_VALUE)
+    public @ResponseBody byte[] getDocumento(@RequestParam("id")long id,@RequestParam("idt") long idt) throws GeracaoDocumentoException, IOException {
+        log.debug("PDF");
+        return templateDocumentoService.buscarDocumentoPdf(id, idt);
     }
 }
