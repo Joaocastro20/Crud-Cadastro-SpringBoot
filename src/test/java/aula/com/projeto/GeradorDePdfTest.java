@@ -158,7 +158,7 @@ public class GeradorDePdfTest {
 
     @Test
     public void imageParaByteArray() throws IOException {
-    File image = new File("/tmp/BASIS10422564510369614420.png");
+    File image = new File("/tmp/BASIS13766036386056969130.png");
     BufferedImage original = ImageIO.read(image);
     ByteArrayOutputStream stream = new ByteArrayOutputStream();
     ImageIO.write(original,"png",stream);
@@ -168,18 +168,13 @@ public class GeradorDePdfTest {
 
     @Test
     public void imagemDirect() throws IOException, com.google.zxing.WriterException {
-        // String text = String.valueOf(Files.createTempFile("java.io.text","ASD"));
-        String text = "asmdmasdadaw";
-        //Perguntar se e pra ser aleatorio mesmo, pois aqui sera o conteudo do QRcode
-        String filePath = String.valueOf(Files.createTempFile("BASIS",".png"));
+        String text = "asasdsadasdas";
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE,200,200);
-        System.out.println("-----------------BIT MATRIX-------------");
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-        Path path = FileSystems.getDefault().getPath(filePath);
-        System.out.println(path);
-        MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
+        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, 200,200);
+        MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
+        byte[] imagembyte = outputStream.toByteArray();
+        System.out.println(Arrays.toString(imagembyte));
 
     }
 }
