@@ -110,11 +110,10 @@ public class GeradorDePdfTest {
 
     @Test
     public void byteParaBase(){
-        Base64 code = new Base64();
-        byte[] matriz = { -56, -123, -109, -109, -106, 64, -26,
-            -106, -103, -109, -124, 90 };
-        byte[] base = code.encode(matriz);
-        System.out.println(String.valueOf(base));
+        byte[] matriz = {-119, 80, 78, 71, 13, 10, 26, 10, 0, 0, 0, 13, 73, 72, 68, 82, 0, 0, 0, -56, 0, 0, 0, -56, 1, 0, 0, 0, 0, -123, 35, -109, 51, 0, 0, 1, 121, 73, 68, 65, 84, 120, 94, -19, -106, 65, 110, -60, 48, 8, 69, 45, 113, 45, 75, -66, 58, -110, -81, 101, -55, -3, -113, -88, -83, -109, -74, -85, -62, 46, -52, -116, -58, -31, 45, 12, -33, -128, -45, -10, 95, -42, -98, -114, 47, 123, -55, 75, -80, -105, -4, -125, 120, 107, -74, -58, -34, 83, -117, -63, 67, 17, -103, 56, -69, 32, 11, 126, 85, -60, 109, -82, 54, -26, 92, -67, 27, 15, -123, -60, -5, 21, -62, 44, 38, 114, 41, 2, 96, 33, 65, 72, -91, -39, 12, 124, 83, 52, -107, 80, 20, -8, -62, 126, -44, 78, 30, -71, 108, 42, 75, -99, -33, -25, 99, 1, -15, 102, 124, -57, 50, 45, 123, -17, 65, 75, -56, 88, 125, 44, -102, 74, -86, 110, 63, 53, -56, 36, 74, -48, -68, -85, 123, -73, 98, 88, 103, 4, -71, 68, 64, -65, -31, -72, -121, -45, -57, 53, 68, 27, 75, -55, 17, 77, -20, 66, 85, -124, -122, 18, -92, -87, 104, -30, -11, -83, 104, 46, -47, -55, 49, -8, 56, 52, -46, 100, -40, -106, 16, -106, -111, 33, 109, -43, 111, 90, -89, 18, 37, -121, 3, 85, 53, 47, -20, -120, 32, -103, 48, -63, -7, -41, -104, 21, -120, 117, 9, -111, -98, 72, 106, -60, -46, -37, -39, 11, -87, 36, 18, 85, 3, -85, 22, -43, 93, -52, -40, 26, 34, 9, -107, -93, -90, -123, 42, -91, -35, 20, -51, 37, 84, -121, -101, 62, 81, 31, -89, -94, -71, -124, 75, 111, -47, -64, -101, -18, -70, 107, -99, 74, 116, -3, -55, 37, 7, -18, 107, -64, -106, 16, -99, 24, -81, 38, -72, -101, 14, 47, -114, -82, -128, 96, -20, -49, 68, -97, -5, 124, 115, -56, 37, -50, -115, -82, -87, 103, -68, -93, -88, -4, 71, 17, -103, -79, -71, 18, -12, 103, 4, -55, -60, -111, 115, -60, -35, 71, 53, 90, 33, -119, -99, -105, -58, -71, 110, -36, 74, 34, 65, -27, 98, 113, 9, 90, 66, 2, -46, 85, 36, 121, -85, -8, 84, 18, 21, 18, -19, -59, -39, -83, 103, -19, -92, -111, 95, -19, 37, 47, -63, 94, -110, 77, 62, 0, -52, -58, 88, 78, -52, -68, -125, -96, 0, 0, 0, 0, 73, 69, 78, 68, -82, 66, 96, -126
+        };
+        String base = Base64.encodeBase64String(matriz);
+        System.out.println(base);
     }
     @Test
     public void whenGetBytesWithNamedCharset_thenOK()
@@ -169,7 +168,7 @@ public class GeradorDePdfTest {
 
     @Test
     public void imagemDirect() throws IOException, com.google.zxing.WriterException {
-        String text = "asasdsadasdas";
+        String text = "https://www.napratica.org.br/dicas-como-parar-de-procrastinar/";
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         QRCodeWriter qrCodeWriter = new QRCodeWriter();
         BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, 200,200);
@@ -188,4 +187,19 @@ public class GeradorDePdfTest {
         ImageIO.write(bimage,"jpg",new File(String.valueOf(path)));
         System.out.println(path);
     }
+    @Test
+    public final byte[] generatedsfQRCodeImage()
+        throws  IOException, com.google.zxing.WriterException {
+        String text = "sajdiajdwad";
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE,100
+            ,100);
+        MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
+        System.out.println(outputStream.toByteArray());
+        return outputStream.toByteArray();
+
+    }
+
+
 }

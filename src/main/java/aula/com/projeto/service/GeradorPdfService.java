@@ -3,10 +3,16 @@ package aula.com.projeto.service;
 import aula.com.projeto.exception.GeracaoDocumentoException;
 import aula.com.projeto.model.TemplateDocumento;
 import aula.com.projeto.model.User;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
 import com.itextpdf.text.DocumentException;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 import org.xhtmlrenderer.layout.SharedContext;
@@ -15,6 +21,7 @@ import org.apache.commons.io.IOUtils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,5 +66,15 @@ public class GeradorPdfService {
         }catch (IOException | TemplateException e){
             throw new GeracaoDocumentoException(String.format("Erro ao gerar o modelo %s",templateDocumento.getNome()),e);
         }
+    }
+
+    public String geraQRCode(String text) throws WriterException, IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, 200,200);
+        MatrixToImageWriter.writeToStream(bitMatrix, "PNG", outputStream);
+        byte[] imagembyte = outputStream.toByteArray();
+        return Base64.encodeBase64String(imagembyte);
+
     }
 }

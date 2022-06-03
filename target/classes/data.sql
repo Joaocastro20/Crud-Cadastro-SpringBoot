@@ -1,5 +1,5 @@
-INSERT INTO USER (id,cpf,nm_name,email) VALUES (1,'111.111.111-11','Kelly Cristina Feitosa Dos Santos Ferreira Pereira','robertinho@Gmail.com');
-INSERT INTO USER (id,cpf,nm_name,email) VALUES (2,'222.222.222-22','Eustaquio','eustaquio@Gmail.com');
+INSERT INTO USER (id,cpf,nm_name,email,QRCODE) VALUES (1,'111.111.111-11','Kelly Cristina Feitosa Dos Santos Ferreira Pereira','robertinho@Gmail.com','iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQAAAABYmaj5AAAAw0lEQVR4XuXSsQ3DIBAF0Itc0MULILEGXVayF7AzQWa6jjWQWAA6CpQLtrCCi8P0RjTP0gF3/kDV8nA3ITyinQDWSxkK6AKlDsGMaUbZpehCp8ypjhcFY+fqZaxyf0bW3bKi7cNaTZAVOq+VF8O1CEZDXttyQ0sJhBxjeXVLOFDMW5X7WkqTkJN216K9FEtdS9vM1AeOUxrK/yHap6YO7SmgUyZYGfd9HWltK8oFjky0lPOi3qJKFqetP1igmgSn/7q1fgkOGriTGNd3AAAAAElFTkSuQmCC');
+INSERT INTO USER (id,cpf,nm_name,email,QRCODE) VALUES (2,'222.222.222-22','Eustaquio','eustaquio@Gmail.com','iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQAAAACFI5MzAAABeUlEQVR4Xu2WQW7EMAhFLXEtS746kq9lyf2PqK2TtqvCLsyMxuEtDN+A0/Zf1p6OL3vJS7CX/IN4a7bG3lOLwUMRmTi7IAt+VcRtrjbmXL0bD4XE+xXCLCZyKQJgIUFIpdkMfFM0lVAU+MJ+1E4euWwqS53f52MB8WZ8xzIte+9BS8hYfSyaSqpuPzXIJErQvKt7t2JYZwS5REC/4biH08c1RBtLyRFN7EJVhIYSpKlo4vWtaC7RyTH4ODTSZNiWEJaRIW3Vb1qnEiWHA1U1L+yIIJkwwfnXmBWIdQmRnkhqxNLb2QupJBJVA6sW1V3M2BoiCZWjpoUqpd0UzSVUh5s+UR+normES2/RwJvuumudSnT9ySUH7mvAlhCdGK8muJsOL46ugGDsz0Sf+3xzyCXOja6pZ7yjqPxHEZmxuRL0ZwTJxJFzxN1HNVohiZ2Xxrlu3EoiQeVicQlaQgLSVSR5q/hUEhUS7cXZrWftpJFf7SUvwV6STT4AzMZYTsy8g6AAAAAASUVORK5CYII=');
 INSERT INTO USER (id,cpf,nm_name,email) VALUES (3,'333.333.333-33','Ana','ana@Gmail.com');
 INSERT INTO USER (id,cpf,nm_name,email) VALUES (4,'444.444.444-44','Ronaldo','ronaldo@Gmail.com');
 INSERT INTO USER (id,cpf,nm_name,email) VALUES (5,'555.555.555-55','Diogo','diogo@Gmail.com');
@@ -236,9 +236,10 @@ INSERT INTO TEMPLATE_DOCUMENTO (id,ativo,modelo,nome) VALUES  (3,true,'<html><he
       <td>Assinatura:__________________</td>
     </tr>
   </table>
-  <div class="profile_picture" style="display:block;width:50px;height:50px;" />
+  <img src="data:image/png;base64,${user.qrcode}" alt="Red dot"></img>
 </div>
-</body></html>
+</body>
+</html>
 
 ','termo');
 
