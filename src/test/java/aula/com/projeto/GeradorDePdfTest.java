@@ -200,6 +200,14 @@ public class GeradorDePdfTest {
         return outputStream.toByteArray();
 
     }
+    @Test
+    @DisplayName("deve adicionar qrcode em base 64 no tamplate ")
+    public void addQrcodeTemplate(){
+        String html = "<html><head></head><body><p>Eu, identificado pelo CPF: 111.222.333-444</p><table><#list assinaturas as assinatura><tr>%s</tr><tr><td> Documento assinado eletrônicamente por ${assinatura.getLogin()}, em ${assinatura.getDataFormatada()?datetime(\"dd-MM-yyyy HH:mm:ss\")?string(\"dd/MM/yyyy, 'às' HH:mm\")}, ${assinatura.getTimeZone()}</td></tr></#list></table></body></html>";
+        String qrcode = "iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQAAAABYmaj5AAAAw0lEQVR4XuXSsQ3DIBAF0Itc0MULILEGXVayF7AzQWa6jjWQWAA6CpQLtrCCi8P0RjTP0gF3/kDV8nA3ITyinQDWSxkK6AKlDsGMaUbZpehCp8ypjhcFY+fqZaxyf0bW3bKi7cNaTZAVOq+VF8O1CEZDXttyQ0sJhBxjeXVLOFDMW5X7WkqTkJN216K9FEtdS9vM1AeOUxrK/yHap6YO7SmgUyZYGfd9HWltK8oFjky0lPOi3qJKFqetP1igmgSn/7q1fgkOGriTGNd3AAAAAElFTkSuQmCC";
+        String formatada = String.format(html,"<img src=\"data:image/png;base64,"+qrcode+"\"></img>");
+        System.out.println(formatada);
+    }
 
 
 }
