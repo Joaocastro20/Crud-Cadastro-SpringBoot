@@ -1,7 +1,0 @@
-/home/basis/Documentos/ExceptionHandler-Metricas-Actuator-TDD/src/main/java/aula/com/projeto/User.java
-/home/basis/Documentos/ExceptionHandler-Metricas-Actuator-TDD/src/main/java/aula/com/projeto/ProjetoApplication.java
-/home/basis/Documentos/ExceptionHandler-Metricas-Actuator-TDD/src/main/java/aula/com/projeto/exception/NameNullException.java
-/home/basis/Documentos/ExceptionHandler-Metricas-Actuator-TDD/src/main/java/aula/com/projeto/controller/UserController.java
-/home/basis/Documentos/ExceptionHandler-Metricas-Actuator-TDD/src/main/java/aula/com/projeto/exception/NameVazioException.java
-/home/basis/Documentos/ExceptionHandler-Metricas-Actuator-TDD/src/main/java/aula/com/projeto/controller/ProdutoControllerAdvice.java
-/home/basis/Documentos/ExceptionHandler-Metricas-Actuator-TDD/src/main/java/aula/com/projeto/UserRepository.java
